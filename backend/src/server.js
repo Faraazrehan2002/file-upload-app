@@ -21,14 +21,16 @@ const GENERIC_RESET_MESSAGE =
 
 const app = express();
 
-const corsOrigins = process.env.CORS_ORIGIN
-  ? process.env.CORS_ORIGIN.split(",").map((origin) => origin.trim())
-  : true;
+const corsOriginEnv = process.env.CORS_ORIGIN;
+const corsOrigins =
+  !corsOriginEnv || corsOriginEnv === "*"
+    ? true
+    : corsOriginEnv.split(",").map((origin) => origin.trim());
 
 app.use(
   cors({
     origin: corsOrigins,
-    credentials: true,
+    credentials: corsOrigins !== true,
   })
 );
 app.use((req, res, next) => {

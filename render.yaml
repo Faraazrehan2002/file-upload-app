@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: faraaz-file-upload-api
+    runtime: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm install && npx prisma generate && npx prisma migrate deploy
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: file:./prisma/prod.db
+      - key: JWT_SECRET
+        generateValue: true
+      - key: EXPOSE_RESET_LINK
+        value: "false"
+      - key: CORS_ORIGIN
+        value: "*"
