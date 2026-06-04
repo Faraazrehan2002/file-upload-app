@@ -1,0 +1,164 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #1f2937;
+  }
+  
+  .app {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 48px 16px;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 720px;
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  }
+  
+  h1 {
+    margin-bottom: 8px;
+  }
+  
+  .subtitle {
+    color: #6b7280;
+    margin-bottom: 24px;
+  }
+  
+  .message {
+    padding: 12px;
+    margin-bottom: 16px;
+    background: #eef2ff;
+    border-radius: 8px;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  button {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  button.secondary {
+    background: #6b7280;
+  }
+  
+  .tabs button {
+    background: #e5e7eb;
+    color: #111827;
+  }
+  
+  .tabs button.active {
+    background: #2563eb;
+    color: white;
+  }
+  
+  form {
+    display: grid;
+    gap: 12px;
+  }
+  
+  input {
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+  }
+  
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .upload-box {
+    margin: 24px 0;
+    padding: 16px;
+    border: 1px dashed #9ca3af;
+    border-radius: 12px;
+  }
+
+  .selected-file {
+    margin: 0;
+    color: #374151;
+    font-size: 0.95rem;
+  }
+
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .file-list {
+    display: grid;
+    gap: 12px;
+  }
+  
+  .file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+  
+  .file-item p {
+    margin: 4px 0 0;
+    color: #6b7280;
+  }
+  
+  .empty {
+    color: #6b7280;
+  }
+
+  .section-title {
+    margin: 0 0 8px;
+    font-size: 1.25rem;
+  }
+
+  .hint {
+    color: #6b7280;
+    margin: 0 0 16px;
+  }
+
+  .link-button {
+    background: transparent;
+    color: #2563eb;
+    padding: 0;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .link-button:hover {
+    text-decoration: underline;
+  }
+
+  .dev-reset {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: #374151;
+    word-break: break-all;
+  }
+
+  .dev-reset a {
+    color: #2563eb;
+  }
