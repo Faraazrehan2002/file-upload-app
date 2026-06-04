@@ -132,9 +132,49 @@ file-upload-app/
 | `FRONTEND_URL`      | Base URL for password reset links           | `http://localhost:5173` |
 | `EXPOSE_RESET_LINK` | Return reset URL in API response (dev only) | `true`                  |
 
+## Netlify (frontend) + API host (backend)
+
+Netlify only serves the React app. The Express API must run elsewhere (for example [Render](https://render.com), Railway, or Fly.io).
+
+### 1. Deploy the backend
+
+Host the `backend/` folder as a Node web service. Set `DATABASE_URL`, `JWT_SECRET`, and:
+
+```env
+CORS_ORIGIN=https://your-site-name.netlify.app
+FRONTEND_URL=https://your-site-name.netlify.app
+EXPOSE_RESET_LINK=false
+```
+
+Note the public API URL, e.g. `https://file-upload-api.onrender.com`.
+
+### 2. Configure Netlify
+
+In **Site configuration → Build & deploy**:
+
+| Setting            | Value        |
+| ------------------ | ------------ |
+| Base directory     | `frontend`   |
+| Build command      | `npm run build` |
+| Publish directory  | `dist`       |
+
+(Or connect the repo and use the root `netlify.toml`, which sets these automatically.)
+
+In **Environment variables**, add:
+
+| Key             | Value                                      |
+| --------------- | ------------------------------------------ |
+| `VITE_API_URL`  | `https://your-api-host.com/api` (no trailing slash on host; include `/api`) |
+
+Trigger a **new deploy** after saving — Vite bakes this in at build time.
+
+### 3. Why it looked broken
+
+- **`/api` on Netlify** does not reach your Node server unless you proxy or set `VITE_API_URL`.
+- **Wrong build folder** (repo root instead of `frontend`) produces an empty or unstyled site.
+
 ## Production Notes
 
 - Set `EXPOSE_RESET_LINK=false` in production and deliver reset links by email (or another secure channel) instead of API responses.
 - Replace `JWT_SECRET` with a cryptographically random value.
 - Use a production-grade database instead of SQLite if you deploy at scale.
-- Serve the frontend build behind HTTPS and point API requests at your deployed backend URL (or configure the Vite proxy equivalent in your host).

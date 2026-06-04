@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API_URL = "/api";
+const API_URL = import.meta.env.VITE_API_URL || "/api";
 
 const FILE_READ_TIMEOUT_MS = 20000;
 const UPLOAD_TIMEOUT_MS = 60000;

@@ -21,7 +21,16 @@ const GENERIC_RESET_MESSAGE =
 
 const app = express();
 
-app.use(cors());
+const corsOrigins = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(",").map((origin) => origin.trim())
+  : true;
+
+app.use(
+  cors({
+    origin: corsOrigins,
+    credentials: true,
+  })
+);
 app.use((req, res, next) => {
   if (req.is("multipart/form-data")) {
     return next();
